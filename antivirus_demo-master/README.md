@@ -1,32 +1,62 @@
-# Antivirus Demo
+# oss_assign3
+my student_id is 17011633
 
-Overview
-============
-This project helps train a classifier to be able to detect [PE files](https://en.wikipedia.org/wiki/Portable_Executable) as either malicious or legitimate. It tries out 6 different classification algorithms before deciding which one to use for prediction by comparing their results. This is the code for 'Build an Antivirus in 5 Min' on [Youtube](https://youtu.be/iLNHVwSu9EA).
+my name is seongjun Kim
 
-Dependencies
-============
+I trained using learning.py from "https://github.com/llSourcell/antivirus_demo" and tried malicious detection of pe files.
 
-* pandas ```pip install pandas```
-* numpy ```pip install numpy```
-* pickle ```pip install pickle```
-* scipy ```pip install scipy```
-* scikit ```pip install -U scikit-learn```
+When learning whether the file is malcious, 
+I used 0.exe:  http://www.tekdefense.com/downloads/malware-samples/
 
-Use [pip](https://pypi.python.org/pypi/pip) to install any missing dependencies
+When learning whether the file is legitimate, 
+I used notepad.exe
 
-Basic Usage
-===========
+## run learning.py 
 
-1. Run ```python learning.py``` to train the model. It will train on the dataset included called 'data.csv'.
+```
+apoo@ubuntu:~/Desktop/opensource/antivirus_demo-master$ sudo python learning.py
+Researching important feature based on 54 total features
 
-2. Once trained you can test the model via ```python checkpe.py YOUR_PE_FILE```. It will output either malicious or legitimate!
+/usr/local/lib/python2.7/dist-packages/sklearn/ensemble/forest.py:246: FutureWarning: The default value of n_estimators will change from 10 in version 0.20 to 100 in 0.22.
+  "10 in version 0.20 to 100 in 0.22.", FutureWarning)
+11 features identified as important:
+1. feature Characteristics (0.151784)
+2. feature MajorSubsystemVersion (0.122819)
+3. feature DllCharacteristics (0.110575)
+4. feature VersionInformationSize (0.109256)
+5. feature Machine (0.098551)
+6. feature ResourcesMaxEntropy (0.062880)
+7. feature ImageBase (0.044585)
+8. feature Subsystem (0.038822)
+9. feature SectionsMinEntropy (0.035963)
+10. feature SectionsMaxEntropy (0.032510)
+11. feature ResourcesMinEntropy (0.026761)
 
-That's it!
+Now testing algorithms
+GNB : 70.191959 %
+DecisionTree : 98.942412 %
+RandomForest : 99.322709 %
+AdaBoost : 98.536762 %
+GradientBoosting : 98.757696 %
 
-Credits
-===========
-Credit for the vast majority of code here goes to [Te-k](https://github.com/Te-k). I've merely created a wrapper around all of the important functions to get people started.
-# opensource_assignment3
-# opensource_assignment3
-# opensource_assignment3
+Winner algorithm is RandomForest with a 99.322709 % success
+Saving algorithm and feature list in classifier directory...
+Saved
+False positive rate : 0.562465 %
+False negative rate : 0.947637 %
+
+```
+
+## Run checkpe.py
+
+```
+apoo@ubuntu:~/Desktop/opensource/antivirus_demo-master$ sudo python checkpe.py 0.exe
+The file 0.exe is malicious
+```
+
+```
+
+apoo@ubuntu:~/Desktop/opensource/antivirus_demo-master$ sudo python checkpe.py notepad.exe
+The file notepad.exe is legitimate
+
+```
