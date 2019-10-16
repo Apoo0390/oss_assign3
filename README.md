@@ -6,7 +6,7 @@ my name is seongjun Kim
 I trained using learning.py from "https://github.com/llSourcell/antivirus_demo" and tried malicious detection of pe files.
 
 When learning whether the file is malcious, 
-I used [0.exe]:  http://www.tekdefense.com/downloads/malware-samples/
+I used 0.exe:  http://www.tekdefense.com/downloads/malware-samples/
 
 When learning whether the file is legitimate, 
 I used notepad.exe
